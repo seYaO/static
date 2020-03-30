@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<% ctx.version = new Date().getTime() %>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首届福州文旅产品网络消费季</title>
+    <meta charset="utf-8">
+    <!--删除默认的苹果工具栏和菜单栏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--控制状态栏显示样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--格式检测-->
+    <meta content="telephone=no" name="format-detection" />
+    <!--控制页面打开大小-->
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+        name="viewport">
+    <link rel="stylesheet" type="text/css" href="//css.40017.cn/cn/s/2016/pc/zt/30819/swiper.min.css" />
+    <!--自定义样式-->
+    <link rel="stylesheet" type="text/css" href="//css.40017.cn/cn/min/??/cn/s/2020/zt/touch/200326/common.css?v=<%=ctx.version%>">
+    <link rel="stylesheet" type="text/css" href="//css.40017.cn/cn/min/??/cn/s/2020/zt/touch/200326/index.css?v=<%=ctx.version%>">
+</head>
+
+<body>
+    <div class="app" id="app" v-cloak @click="showProvList = false">
+    </div> 
+</body>
+
+<script type="text/javascript" src="//js.40017.cn/touch/cn/public/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="//js.40017.cn/cn/min/??/cn/s/2017/touch/common/vue.js"></script>
+<script type="text/javascript" src="//js.40017.cn/cn/min/??/cn/s/2019/common/wlurl.js?v=20100112"></script>
+<!-- rem -->
+<script type="text/javascript">
+    (function () {
+        var size = 640 // 设计稿宽度
+        $(document).on('page:resize', function (e) {
+            var _w = $(document.body).width();
+            $('html').css('font-size', ((_w > size) ? size : _w) / size * 100 + 'px');
+        });
+        $(document).trigger('page:resize');
+        $(window).on('resize', function () {
+            $(document).trigger('page:resize');
+        })
+    })();
+</script>
+<!--脚本-->
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script type="text/javascript" src="//js.40017.cn/cn/min/??/touch/hb/c/bridge.2.1.4.js?v=2016053"></script>
+<script type="text/javascript" src="//js.40017.cn/cn/min/??/cn/s/2016/touch/zt/ztc/resetRefID.3.5.js,/cn/s/2016/touch/zt/c/sztcom.js?v=2016012703"></script>
+<script type="text/javascript" src="https://js.40017.cn/cn/min/??/cn/s/api/setsharefn.5.js"></script>
+
+<script src='//js.40017.cn/cn/min/??/cn/s/2020/zt/touch/200326/config.js?v=<%=ctx.version%>'></script>
+<!-- 分享 -->
+<script>
+    shareImg = window.__configs.shareInfo.shareImg;
+    shareTitle = window.__configs.shareInfo.shareTitle;
+    shareUrl = window.__configs.shareInfo.shareUrl;
+    shareDesc = window.__configs.shareInfo.shareDesc;
+    setShareFun.Pageview = "/Touch站专题/" + window.__configs.shareInfo.ztName;
+    setShareFun.changeShareInfo();
+</script>
+<!--自定义脚本-->
+<script src='//js.40017.cn/cn/min/??/cn/s/2020/zt/touch/200326/utils.js?v=<%=ctx.version%>'></script>
+<script src='//js.40017.cn/cn/min/??/cn/s/2020/zt/touch/200326/services.js?v=<%=ctx.version%>'></script>
+<script src='//js.40017.cn/cn/min/??/cn/s/2020/zt/touch/200326/index.js?v=<%=ctx.version%>'></script>
+
+</html>
