@@ -1,4 +1,5 @@
-import { getQueryString } from '@/utils'
+import * as utils from '@/utils'
+import validate from '@/utils/validate'
 import config from './config'
 
 // 缓存
@@ -26,7 +27,7 @@ let localData = Activity.localData;
 export default {
     isTc: /tctravel/i.test(navigator.userAgent),
     isWx: /MicroMessenger/i.test(navigator.userAgent),
-    isxcx: getQueryString('isxcx') ? true : false,
+    isxcx: validate.isempty(utils.getQueryString('isxcx')) ? false : true,
     // userid=37421349&nickName=seYao_O&level=1
     // memberId: '37421349',
     // memberId: '',

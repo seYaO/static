@@ -1,3 +1,5 @@
+import validate from './validate'
+import services from './services'
 
 /**
  * 字符串去前后的空格
@@ -153,21 +155,35 @@ export const TongChengInfo = (funBack) => {
 }
 
 /**
+ * 分享 微信/app
+ * @param {*} shareInfo 
+ */
+export const setShare = (shareInfo) => {
+    window.setShareFun.shareImg = shareInfo.shareImg;
+    window.setShareFun.shareTitle = shareInfo.shareTitle;
+    window.setShareFun.shareUrl = shareInfo.shareUrl;
+    window.setShareFun.shareDesc = shareInfo.shareDesc;
+    window.setShareFun.Pageview = "/Touch站专题/" + shareInfo.ztName;
+    window.setShareFun.changeShareInfo();
+}
+
+/**
  * 小程序分享
  * @param {*} options 
  */
-export const setMiniappShare = (options) => {
-    var spm = options.spm;
-    var refid = options.refid;
-    var url = encodeURIComponent(options.shareUrl + "?isxcx=1&spm=" + spm + "&refid=" + refid);
+export const setMiniappShare = (event, options) => {
+    event = validate.isempty(this) ? this : event
+    var spm = event.spm;
+    var refid = event.refid;
+    var url = encodeURIComponent(options.url + "?isxcx=1&spm=" + spm + "&refid=" + refid);
     var path = "https://wx.17u.cn/wl/api/redirect?redirect_uri=" + url;
     wx.miniProgram.postMessage({
         data: {
             shareInfo: {
                 currentPath: location.host + location.pathname, //当前页面路径，不需要参数
-                title: options.miniappTitle,
+                title: options.title,
                 path: path, //默认当前页面路径
-                imageUrl: options.miniappImageUrl //支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+                imageUrl: options.imageUrl //支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
             }
         }
     });
@@ -179,6 +195,7 @@ export const setMiniappShare = (options) => {
  * @param {*} callbackFn 
  */
 export const checkLogin = (event, options, callbackFn) => {
+    event = validate.isempty(this) ? event : this
     if (event.isWx) {
         if (event.wxopenid && event.wxunionid) {
             typeof callbackFn === 'function' && callbackFn(true);
@@ -203,4 +220,244 @@ export const checkLogin = (event, options, callbackFn) => {
             }
         }
     }
+}
+
+/**
+ * 获取详情页链接地址
+ * @param {*} event 
+ * @param {*} opts 
+ */
+export const getDetailLink = (opts) => {
+    var spm = opts.spm.slice(0, -1) + (opts.index + 1)
+    if (opts.isTc) {
+        return 'tctclient://react/page?projectId=117001&page=Detail&sceneryId=' + opts.sceneryId + '&spm=' + spm + '&refid=' + opts.refid
+    } else if (opts.isWx && opts.isxcx) {
+        return "/page/top/pages/scenery/detail/detail?sid=" + opts.sceneryId + "&wxspm=" + spm + "&wxrefid=" + opts.refid
+    } else if (opts.isWx) {
+        return opts.wurl + opts.addHtml
+    } else {
+        return opts.murl + opts.addHtml
+        // https://m.ly.com/scenery_1/detail?sceneryId=216168&spm=34.44968.44971.0&refid=1
+    }
+}
+
+/**
+ * 获取下单页链接地址
+ * @param {*} event 
+ * @param {*} opts 
+ */
+export const getOrderLink = (opts) => {
+    var spm = opts.spm.slice(0, -1) + (opts.index + 1)
+    if (opts.isTc) {
+        return 'tctclient://react/page?projectId=117001&page=Order&sid=' + opts.sceneryId + '&policyid=' + opts.priceId + '&spm=' + spm + '&refid=' + opts.refid
+    } else if (opts.isWx && opts.isxcx) {
+        return "/page/top/pages/scenery/order/order?sid=" + opts.sceneryId + "&policyid=" + opts.priceId + "&suppliertype=0&wxspm=" + spm + "&wxrefid=" + opts.refid
+    } else if (opts.isWx) {
+        return '//wx.17u.cn/scenery/booking/newbook1_' + opts.sceneryId + '_' + opts.oldPriceId + '.html?source=1&spm=' + spm + opts.addHtml;
+    } else {
+        return '//m.ly.com/scenery/booking/newbook1.html?sceneryId=' + opts.sceneryId + '&priceid=' + opts.oldPriceId + '&spm=' + spm + opts.addHtml;
+        // return '//m.ly.com/scenery_1/order?resourceId=' + opts.sceneryId + '&policyId=' + opts.oldPriceId + '&spm=' + spm + opts.addHtml;
+        // https://m.ly.com/scenery_1/order?resourceId=216168&policyId=235185&spm=34.44968.44971.0&refid=1
+    }
+}
+
+/**
+ * 跳转页面
+ * @param {*} event 
+ * @param {*} type 
+ * @param {*} item 
+ * @param {*} index 
+ */
+export const windowLocationHref = (event, type, item, index) => {
+    event = validate.isempty(event) ? this : event
+    console.log(event)
+
+    var opts = {
+        isTc: event.isTc,
+        isWx: event.isWx,
+        isxcx: event.isxcx,
+        addHtml: event.addHtml,
+        spm: event.spm,
+        refid: event.refid,
+        index: index,
+        sceneryId: item.SceneryId,
+        priceId: item.BCTTicketId,
+        oldPriceId: item.BCTTicketPriceId,
+        kurl: item.Kurl,
+        wurl: item.Wurl,
+        murl: item.Murl
+    }
+    var detailHref = getDetailLink(opts), orderHref = getOrderLink(opts)
+    if (type == 'order') {
+        if (event.isxcx) {
+            wx.miniProgram.navigateTo({
+                url: orderHref
+            });
+        } else {
+            window.location.href = orderHref
+        }
+    } else if (type == 'detail') {
+        if (event.isxcx) {
+            wx.miniProgram.navigateTo({
+                url: detailHref
+            });
+        } else {
+            window.location.href = detailHref
+        }
+
+    }
+}
+
+/**
+ * 轮播
+ * @param {*} event 
+ * @param {*} index 
+ */
+export const getSwiper = (event, index) => {
+    event = validate.isempty(this) ? this : event
+
+    event['swiper' + index] = new Swiper('#swiper' + index, {
+        // effect: index == 1 ? 'fade' : '',
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        pagination: {
+            el: '.swiper-pagination' + index,
+            clickable: true,
+        },
+        loop: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+    })
+}
+
+/**
+ * 判断之前有没有领过红包
+ * @param {*} event 
+ */
+export const isGetRedpackage = (event) => {
+    event = validate.isempty(this) ? this : event
+    var batchS = []
+    event.loading = true
+
+    //红包批次号;
+    event.redlist.forEach(function (item, index) {
+        batchS.push(item.pcId)
+    })
+
+    var opts = {
+        redlist: this.redlist,
+        memberId: this.memberId,
+    }
+    services.hasRedpackageAjax(opts, function (data) {
+        // 未找到相关信息
+        if (data && data.length) {
+            // 已领过红包
+            for (var i = 0; i < data.length; i++) {
+                for (var j = 0; j < batchS.length; j++) {
+                    if (data[i].BatchNo == batchS[j]) {
+                        event.redlist[j].isGet = true
+                    }
+                }
+            }
+        }
+        event.loading = false
+    })
+}
+
+/**
+ * 领取红包
+ * @param {*} event 
+ * @param {*} idx 
+ */
+export const getRedpackage = (event, idx) => {
+    event = validate.isempty(this) ? this : event
+
+    if (event.redlist[idx].isGet) return
+    event.loading = true;
+
+    var opts = {
+        id: this.redlist[idx].id,
+        memberId: this.memberId,
+    }
+    services.getRedpackageAjax(opts, function (data) {
+        // 发送成功
+        if (data && data.State == 6) {
+            // 领取成功
+            event.redlist[idx].isGet = true;
+            event.dialogInfo = event.redlist[idx]
+            event.showSuccess = true
+            // window.utils.popFn('领取成功')
+        } else if (data && data.State == 4) {
+            // 发送过了
+            event.redlist[idx].isGet = true;
+            // event.redObj = event.redlist[idx];
+            window.utils.popFn('已经领取过红包了哦')
+        } else {
+            event.showFailure = true
+            event.selectIdx = idx
+            // window.utils.popFn(data.Magess)
+        }
+        event.loading = false;
+    })
+}
+
+/**
+ * 验证卡券是否领取
+ * @param {*} event 
+ */
+export const hasGetWechatcard = (event) => {
+    event = validate.isempty(this) ? this : event
+
+    for (var i = 0; i < event.redlist.length; i++) {
+        (function (j) {
+            var opts = {
+                wxopenid: event.wxopenid,
+                cardId: event.redlist[j].cardId,
+            };
+            services.hasWechatcardAjax(opts, function (data) {
+                // 已领取
+                if (data.StateCode == 200 && data.Body && data.Body.length) {
+                    event.redlist[j].isGet = true;
+                }
+            })
+        })(i);
+    }
+}
+
+/**
+ * 领取卡券
+ * @param {*} event 
+ * @param {*} idx 
+ */
+export const getWechatcard = (event, idx) => {
+    event = validate.isempty(this) ? this : event
+
+    if (event.redlist[idx].isGet) return
+    event.loading = true;
+    var opts = {
+        wxopenid: event.wxopenid,
+        cardId: event.redlist[idx].cardId,
+        wxunionid: event.wxunionid
+    }
+    services.getWechatcardAjax(opts, function (data) {
+        if (data) {
+            if (data.StateCode == 200 && data.Body.Cards && data.Body.Cards.length) {
+                // 领取成功
+                // that.redObj = JSON.parse(JSON.stringify(that.redlist[idx]));
+                event.redlist[idx].isGet = true;
+                event.dialogInfo = event.redlist[idx]
+                event.showSuccess = true
+                // window.utils.popFn('领取成功')
+            } else {
+                //失败
+                event.redlist[idx].isGet = false;
+                event.showFailure = true
+                event.selectIdx = idx
+                // window.utils.popFn(data.ResultMsg);
+            }
+        }
+        event.loading = false;
+    })
 }

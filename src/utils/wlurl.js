@@ -1,4 +1,4 @@
-const wlUrl = function(url, body, showLog, isget) {
+export const wlUrl = function (url, body, showLog, isget) {
     if (!url) return url;
     var hexcase = 0; /* hex output format. 0 - lowercase; 1 - uppercase  */
     var b64pad = ""; /* base-64 pad character. "=" for strict RFC compliance */
@@ -231,7 +231,7 @@ const wlUrl = function(url, body, showLog, isget) {
     if (window && window.localStorage) {
         var key = window.localStorage.getItem("zbyKey");
         if (!key) {
-            key = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            key = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = Math.random() * 16 | 0,
                     v = c == 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
@@ -278,5 +278,3 @@ const wlUrl = function(url, body, showLog, isget) {
     if (showLog) console.log(request, signStr, signature);
     return url;
 };
-
-module.exports = wlUrl;
