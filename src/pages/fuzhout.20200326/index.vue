@@ -44,7 +44,7 @@
                 </div>
                 <div class="noSource" v-show="!sectionData2">暂无资源~~</div>
                 <ul v-if="sectionData2 && sectionData2.length>0" class="jdList source">
-                    <a class="sourceItem" v-for="(item,index) in sectionData2" :key="index" @click="windowLocationHref(null,'detail',item,index)">
+                    <a class="sourceItem" v-for="(item,index) in sectionData2" :key="index" @click="windowLocationHref('detail',item,index)">
                         <div class="left">
                             <img class="img" :src="setImageSize(item.SceneryImg,'280x140')">
                         </div>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="buttons">
-                                <div class="btn" @click.stop="windowLocationHref(null,'order',item,index)">立即抢购</div>
+                                <div class="btn" @click.stop="windowLocationHref('order',item,index)">立即抢购</div>
                             </div>
                         </div>
                     </a>
@@ -108,6 +108,9 @@
             </div>
         </div>
 
+        <div class="footer" v-if="isxcx"></div>
+        <div class="foot1" v-else>@同程旅游2019</div>
+
     </div>
 </template>
 
@@ -122,7 +125,7 @@ import * as pageFn from './js/index'
 // import validate from '@/utils/validate'
 import config from './js/config'
 import * as utils from '@/utils'
-import services from '@/utils/services'
+// import services from '@/utils/services'
 
 let AppInfo = {
     isAPP: null, // 是否客户端打开
@@ -152,23 +155,13 @@ export default {
         // 图片裁剪
         setImageSize: utils.setImageSize,
         // 跳转页面
-        // windowLocationHref: utils.windowLocationHref,
-        // 判断之前有没有领过红包
-        isGetHB: utils.isGetRedpackage,
-        // 领取红包
-        getHB: utils.getRedpackage,
-        // 验证卡券是否领取
-        hasGetCard: utils.hasGetWechatcard,
-        // 领取卡券
-        getCard: utils.getWechatcard,
-        // 获取链接参数
-        // getPara: pageFn.getPara,
-        // 数据初始化
-        // initData: pageFn.initData,
-        // 资源异步
-        allAjax: pageFn.allAjax,
+        windowLocationHref(type, item, index){
+            utils.windowLocationHref(this, type, item, index)
+        },
         // 判断是否需要登陆
-        // checkLogin: pageFn.checkLogin.bind(this),
+        checkLogin(idx){
+            pageFn.checkLogin(this,idx)
+        },
         // 初始化
         init() {
             var that = this
@@ -193,127 +186,14 @@ export default {
                     }
                 }
                 // allInit.init(that.zId);
-                allInit(that.zId)
+                pageFn.allInit(that,{id: that.zId, AppInfo, AppNewSpm})
 
                 // 页面进来，先判断是否登陆，如果登陆了，看之前有没有领取过红包
                 if (that.memberId && !that.isxcx) {
-                    that.isGetHB()
+                    utils.isGetRedpackage(this)
                 }
             });
-
-            function allInit(id){
-                window.setRefId.isAjaxGetRef=true;
-                window.setRefId.ChannelID=id;
-                window.setRefId.isChange=false;
-                window.setRefId.uTagName='.app a';
-                window.setRefId.tagValue='href';
-                window.setRefId.doRefid=function(dataAndRefid){
-                    // console.log(3)
-                    //Hellow world~   所有的一切从这里开始
-                    var newRefid = dataAndRefid[0]
-                    var newSpm = dataAndRefid[1]
-                    if (AppInfo.isAPP) {
-                        that.addHtml = AppNewSpm ?
-                            '|' + AppNewSpm + '&refid=' + newRefid :
-                            '&refid=' + newRefid
-                    } else {
-                        that.addHtml =
-                            newSpm.indexOf('|') > 0 ?
-                                '|' + newSpm.split('|')[0] + '&refid=' + newRefid :
-                                '&refid=' + newRefid
-                    }
-                    that.getPara(newSpm, newRefid)
-                }
-                window.setRefId.init();
-            }
         },
-        getPara(spm, refid) {
-            // console.log(utils.getQueryString('refid') ? utils.getQueryString('refid') : refid)
-            refid = utils.getQueryString('refid') ? utils.getQueryString('refid') : refid
-            spm = utils.getQueryString('spm') ? utils.getQueryString('spm') : spm
-            this.refid = refid
-            this.spm = spm
-
-            if (this.isxcx) { // 小程序分享
-                utils.setMiniappShare({ spm: this.spm, refid: this.refid })
-            } else {
-                utils.setShare(config.shareInfo)
-            }
-
-            if (utils.getQueryString("wxparam")) {
-                var URLArgues = JSON.parse(
-                    decodeURIComponent(utils.getQueryString("wxparam"))
-                );
-                this.wxopenid = URLArgues.openid;
-                this.wxunionid = URLArgues.unionid;
-                this.nickname = URLArgues.nickname;
-                this.avatarurl = URLArgues.headimgurl;
-                // console.log(URLArgues)
-            }
-
-            if (this.isWx) {
-                this.hasGetCard(); // 小程序券
-            }
-
-
-            // 判断是否需要登陆
-            // utils.checkLogin(this)
-            this.initData();
-        },
-        initData(){
-            // 约惠春天景点门票(46128)
-            this.allAjax(this, '46128', 2, '', 1, 100);
-        },
-        windowLocationHref(event, type, item, index){
-            event = this
-
-            var opts = {
-                isTc: event.isTc,
-                isWx: event.isWx,
-                isxcx: event.isxcx,
-                addHtml: event.addHtml,
-                spm: event.spm,
-                refid: event.refid,
-                index: index,
-                sceneryId: item.SceneryId,
-                priceId: item.BCTTicketId,
-                oldPriceId: item.BCTTicketPriceId,
-                kurl: item.Kurl,
-                wurl: item.Wurl,
-                murl: item.Murl
-            }
-            var detailHref = utils.getDetailLink(opts), orderHref = utils.getOrderLink(opts)
-            if (type == 'order') {
-                if (event.isxcx) {
-                    wx.miniProgram.navigateTo({
-                        url: orderHref
-                    });
-                } else {
-                    window.location.href = orderHref
-                }
-            } else if (type == 'detail') {
-                if (event.isxcx) {
-                    wx.miniProgram.navigateTo({
-                        url: detailHref
-                    });
-                } else {
-                    window.location.href = detailHref
-                }
-
-            }
-        },
-        checkLogin(idx){
-            var that = this
-            this.showFailure = false;
-            this.showSuccess = false;
-            utils.checkLogin(this, { url: config.shareInfo.shareUrl }, (isWx) => {
-                if (isWx) {
-                    that.getCard(null, idx)
-                } else {
-                    that.getHB(null, idx)
-                }
-            })
-        }
            
     }
 }

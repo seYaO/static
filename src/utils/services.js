@@ -105,7 +105,7 @@ function hasWechatcardAjax(datas, callbackFn) {
         "OpenId": datas.wxopenid,
         "CardId": datas.cardId,
     };
-    window.__services.request({
+    request({
         url: wlUrl(window.location.protocol + '//' + window.location.host + '/wl/api/labrador/resourceservice/getwechatcardreceiverecord/', reqData),
         params: reqData,
         method: 'POST',
@@ -142,7 +142,7 @@ function hasRedpackageAjax(datas, callbackFn) {
         batchS.push(item.pcId)
     })
 
-    window.__services.request({
+    request({
         url: '/scenery/AjaxHelper/ZhuanTiHelp/ThematicIntegration.aspx',
         params: 'action=GETHONGBAOBOOL&BatchNo=' + batchS.join() + '&memberid=' + datas.memberId,
     }, function (data) {
@@ -154,7 +154,7 @@ function hasRedpackageAjax(datas, callbackFn) {
  * 领取红包
  */
 function getRedpackageAjax(datas, callbackFn) {
-    window.__services.request({
+    request({
         url: '/scenery/zt/ZhuanTiAjax/SpmAjaxCall.aspx',
         params: 'action=GETSPMHONGBAO&New=1&ChannelID=' + datas.id + '&MemberId=' + datas.memberId,
     }, function (data) {

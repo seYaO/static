@@ -9,18 +9,20 @@ import config from './config'
 
 /**
  * 获取链接参数
+ * @param {*} event 
  * @param {*} spm 
  * @param {*} refid 
  */
-export const getPara = (spm, refid) => {
-    console.log(utils.getQueryString('refid') ? utils.getQueryString('refid') : refid)
+export const getPara = (event, spm, refid) => {
+    event = validate.isempty(event) ? this : event
+
     refid = utils.getQueryString('refid') ? utils.getQueryString('refid') : refid
     spm = utils.getQueryString('spm') ? utils.getQueryString('spm') : spm
-    this.refid = refid
-    this.spm = spm
+    event.refid = refid
+    event.spm = spm
 
-    if (this.isxcx) { // 小程序分享
-        utils.setMiniappShare({ spm: this.spm, refid: this.refid })
+    if (event.isxcx) { // 小程序分享
+        utils.setMiniappShare({ spm: event.spm, refid: event.refid })
     } else {
         utils.setShare(config.shareInfo)
     }
@@ -29,29 +31,32 @@ export const getPara = (spm, refid) => {
         var URLArgues = JSON.parse(
             decodeURIComponent(utils.getQueryString("wxparam"))
         );
-        this.wxopenid = URLArgues.openid;
-        this.wxunionid = URLArgues.unionid;
-        this.nickname = URLArgues.nickname;
-        this.avatarurl = URLArgues.headimgurl;
+        event.wxopenid = URLArgues.openid;
+        event.wxunionid = URLArgues.unionid;
+        event.nickname = URLArgues.nickname;
+        event.avatarurl = URLArgues.headimgurl;
         // console.log(URLArgues)
     }
 
-    if (this.isWx) {
-        this.hasGetCard(); // 小程序券
+    if (event.isWx) { // 微信 - 验证卡券是否领取
+        utils.hasGetWechatcard(event);
     }
 
 
     // 判断是否需要登陆
-    // utils.checkLogin(this)
-    this.initData();
+    // utils.checkLogin(event)
+    initData(event);
 }
 
 /**
  * 数据初始化
+ * @param {*} event 
  */
-export const initData = () => {
+export const initData = (event) => {
+    event = validate.isempty(event) ? this : event
+
     // 约惠春天景点门票(46128)
-    allAjax(this, '46128', 2, '', 1, 100);
+    allAjax(event, '46128', 2, '', 1, 100);
 }
 
 /**
@@ -63,8 +68,8 @@ export const initData = () => {
  * @param {*} pageSize 
  */
 export const allAjax = (event, mdId, index, onProvId, pageIndex, pageSize) => {
-    event = validate.isempty(this) ? event : this
-    
+    event = validate.isempty(event) ? this : event
+
     var opts = {
         pageIndex,
         pageSize,
@@ -108,17 +113,44 @@ export const allAjax = (event, mdId, index, onProvId, pageIndex, pageSize) => {
  * 判断是否需要登陆
  * @param {*} idx 
  */
-export const checkLogin = (idx) => {
-    console.log(this)
-    debugger
-    // var that = this
-    // this.showFailure = false;
-    // this.showSuccess = false;
-    // utils.checkLogin(this, { url: config.shareInfo.shareUrl }, (isWx) => {
-    //     if (isWx) {
-    //         that.getCard(null, idx)
-    //     } else {
-    //         that.getHB(null, idx)
-    //     }
-    // })
+export const checkLogin = (event, idx) => {
+    event = validate.isempty(event) ? this : event
+
+    event.showFailure = false;
+    event.showSuccess = false;
+    utils.checkLogin(event, { url: config.shareInfo.shareUrl }, (isWx) => {
+        if (isWx) { // 领取卡券
+            utils.getWechatcard(event, idx)
+        } else { // 领取红包
+            utils.getRedpackage(event, idx)
+        }
+    })
+}
+
+/**
+ * 统计/页面初始化
+ * @param {*} event 
+ * @param {*} opts 
+ */
+export const allInit = (event, opts) => {
+    event = validate.isempty(event) ? this : event
+    var AppInfo = opts.AppInfo, AppNewSpm = opts.AppNewSpm
+
+    window.setRefId.isAjaxGetRef = true;
+    window.setRefId.ChannelID = opts.id;
+    window.setRefId.isChange = false;
+    window.setRefId.uTagName = '.app a';
+    window.setRefId.tagValue = 'href';
+    window.setRefId.doRefid = function (dataAndRefid) {
+        //Hellow world~   所有的一切从这里开始
+        var newRefid = dataAndRefid[0]
+        var newSpm = dataAndRefid[1]
+        if (AppInfo.isAPP) {
+            event.addHtml = AppNewSpm ? `|${AppNewSpm}&refid=${newRefid}` : `&refid=${newRefid}`
+        } else {
+            event.addHtml = newSpm.indexOf('|') > 0 ? `|${newSpm.split('|')[0]}&refid=${newRefid}` : `&refid=${newRefid}`
+        }
+        getPara(event, newSpm, newRefid)
+    }
+    window.setRefId.init();
 }

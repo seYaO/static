@@ -227,16 +227,16 @@ export const checkLogin = (event, options, callbackFn) => {
  * @param {*} event 
  * @param {*} opts 
  */
-export const getDetailLink = (opts) => {
-    var spm = opts.spm.slice(0, -1) + (opts.index + 1)
-    if (opts.isTc) {
-        return 'tctclient://react/page?projectId=117001&page=Detail&sceneryId=' + opts.sceneryId + '&spm=' + spm + '&refid=' + opts.refid
-    } else if (opts.isWx && opts.isxcx) {
-        return "/page/top/pages/scenery/detail/detail?sid=" + opts.sceneryId + "&wxspm=" + spm + "&wxrefid=" + opts.refid
-    } else if (opts.isWx) {
-        return opts.wurl + opts.addHtml
+export const getDetailLink = (event, opts) => {
+    var spm = event.spm.slice(0, -1) + (opts.index + 1)
+    if (event.isTc) {
+        return 'tctclient://react/page?projectId=117001&page=Detail&sceneryId=' + opts.sceneryId + '&spm=' + spm + '&refid=' + event.refid
+    } else if (event.isWx && event.isxcx) {
+        return "/page/top/pages/scenery/detail/detail?sid=" + opts.sceneryId + "&wxspm=" + spm + "&wxrefid=" + event.refid
+    } else if (event.isWx) {
+        return opts.wurl + event.addHtml
     } else {
-        return opts.murl + opts.addHtml
+        return opts.murl + event.addHtml
         // https://m.ly.com/scenery_1/detail?sceneryId=216168&spm=34.44968.44971.0&refid=1
     }
 }
@@ -246,16 +246,16 @@ export const getDetailLink = (opts) => {
  * @param {*} event 
  * @param {*} opts 
  */
-export const getOrderLink = (opts) => {
-    var spm = opts.spm.slice(0, -1) + (opts.index + 1)
-    if (opts.isTc) {
-        return 'tctclient://react/page?projectId=117001&page=Order&sid=' + opts.sceneryId + '&policyid=' + opts.priceId + '&spm=' + spm + '&refid=' + opts.refid
-    } else if (opts.isWx && opts.isxcx) {
-        return "/page/top/pages/scenery/order/order?sid=" + opts.sceneryId + "&policyid=" + opts.priceId + "&suppliertype=0&wxspm=" + spm + "&wxrefid=" + opts.refid
-    } else if (opts.isWx) {
-        return '//wx.17u.cn/scenery/booking/newbook1_' + opts.sceneryId + '_' + opts.oldPriceId + '.html?source=1&spm=' + spm + opts.addHtml;
+export const getOrderLink = (event, opts) => {
+    var spm = event.spm.slice(0, -1) + (opts.index + 1)
+    if (event.isTc) {
+        return 'tctclient://react/page?projectId=117001&page=Order&sid=' + opts.sceneryId + '&policyid=' + opts.priceId + '&spm=' + spm + '&refid=' + event.refid
+    } else if (event.isWx && event.isxcx) {
+        return "/page/top/pages/scenery/order/order?sid=" + opts.sceneryId + "&policyid=" + opts.priceId + "&suppliertype=0&wxspm=" + spm + "&wxrefid=" + event.refid
+    } else if (event.isWx) {
+        return '//wx.17u.cn/scenery/booking/newbook1_' + opts.sceneryId + '_' + opts.oldPriceId + '.html?source=1&spm=' + spm + event.addHtml;
     } else {
-        return '//m.ly.com/scenery/booking/newbook1.html?sceneryId=' + opts.sceneryId + '&priceid=' + opts.oldPriceId + '&spm=' + spm + opts.addHtml;
+        return '//m.ly.com/scenery/booking/newbook1.html?sceneryId=' + opts.sceneryId + '&priceid=' + opts.oldPriceId + '&spm=' + spm + event.addHtml;
         // return '//m.ly.com/scenery_1/order?resourceId=' + opts.sceneryId + '&policyId=' + opts.oldPriceId + '&spm=' + spm + opts.addHtml;
         // https://m.ly.com/scenery_1/order?resourceId=216168&policyId=235185&spm=34.44968.44971.0&refid=1
     }
@@ -270,15 +270,8 @@ export const getOrderLink = (opts) => {
  */
 export const windowLocationHref = (event, type, item, index) => {
     event = validate.isempty(event) ? this : event
-    console.log(event)
 
     var opts = {
-        isTc: event.isTc,
-        isWx: event.isWx,
-        isxcx: event.isxcx,
-        addHtml: event.addHtml,
-        spm: event.spm,
-        refid: event.refid,
         index: index,
         sceneryId: item.SceneryId,
         priceId: item.BCTTicketId,
@@ -287,7 +280,7 @@ export const windowLocationHref = (event, type, item, index) => {
         wurl: item.Wurl,
         murl: item.Murl
     }
-    var detailHref = getDetailLink(opts), orderHref = getOrderLink(opts)
+    var detailHref = getDetailLink(event, opts), orderHref = getOrderLink(event, opts)
     if (type == 'order') {
         if (event.isxcx) {
             wx.miniProgram.navigateTo({
@@ -337,7 +330,7 @@ export const getSwiper = (event, index) => {
  * @param {*} event 
  */
 export const isGetRedpackage = (event) => {
-    event = validate.isempty(this) ? this : event
+    event = validate.isempty(event) ? this : event
     var batchS = []
     event.loading = true
 
@@ -372,7 +365,7 @@ export const isGetRedpackage = (event) => {
  * @param {*} idx 
  */
 export const getRedpackage = (event, idx) => {
-    event = validate.isempty(this) ? this : event
+    event = validate.isempty(event) ? this : event
 
     if (event.redlist[idx].isGet) return
     event.loading = true;
@@ -408,7 +401,7 @@ export const getRedpackage = (event, idx) => {
  * @param {*} event 
  */
 export const hasGetWechatcard = (event) => {
-    event = validate.isempty(this) ? this : event
+    event = validate.isempty(event) ? this : event
 
     for (var i = 0; i < event.redlist.length; i++) {
         (function (j) {
@@ -432,7 +425,7 @@ export const hasGetWechatcard = (event) => {
  * @param {*} idx 
  */
 export const getWechatcard = (event, idx) => {
-    event = validate.isempty(this) ? this : event
+    event = validate.isempty(event) ? this : event
 
     if (event.redlist[idx].isGet) return
     event.loading = true;
