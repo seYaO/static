@@ -26,8 +26,8 @@ let localData = Activity.localData;
 
 export default {
     isTc: /tctravel/i.test(navigator.userAgent),
-    // isWx: /MicroMessenger/i.test(navigator.userAgent),
-    isWx: true,
+    isWx: /MicroMessenger/i.test(navigator.userAgent),
+    // isWx: true,
     isxcx: validate.isempty(utils.getQueryString('isxcx')) ? false : true,
     // userid=37421349&nickName=seYao_O&level=1
     // memberId: '37421349',
