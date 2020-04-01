@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font: 12px/1.5 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fff;
+}
+
+body {
+    min-width: 1200px;
+    position: relative;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    vertical-align: top;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+.both {
+    width: 100%;
+    overflow: hidden;
+    font: 14px '微软雅黑', 'microsoft yahei ui', sans-serif;
+    position: relative;
+    background: #eb2d33;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: '';
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.multi-ellipsis--l2,
+.multi-ellipsis--l3,
+.multi-ellipsis--l4,
+.multi-ellipsis--l5,
+.multi-ellipsis--l6,
+.multi-ellipsis--l7,
+.multi-ellipsis--l11 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical
+}
+
+.multi-ellipsis--l2 {
+    -webkit-line-clamp: 2
+}
+
+.multi-ellipsis--l3 {
+    -webkit-line-clamp: 3
+}
+
+.multi-ellipsis--l4 {
+    -webkit-line-clamp: 4
+}
+
+.multi-ellipsis--l5 {
+    -webkit-line-clamp: 5
+}
+
+.multi-ellipsis--l6 {
+    -webkit-line-clamp: 6
+}
+
+.multi-ellipsis--l7 {
+    -webkit-line-clamp: 7
+}
+
+.multi-ellipsis--l11 {
+    -webkit-line-clamp: 11
+}
+
+.smask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, .3), rgba(0, 0, 0, 0));
+}
+
+.noData {
+    text-align: center;
+    font-size: 28px;
+    width: 380px;
+    margin: 0 auto;
+    margin-top: 60px;
+    line-height: 46px;
+}
+
+.loader img {
+    width: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.loadImg {
+    text-align: center;
+}
+
+.loadImg img {
+    display: block;
+    width: 100px;
+    margin: 100px auto 0;
+}
+
+.none {
+    display: none;
+}
+
+.imgbg {
+    position: relative;
+    left: 50%;
+    top: 0;
+    margin-left: -960px;
+    display: block;
+}
+
+.top {
+    position: relative;
+}
+
+.section {
+    position: relative;
+}
+
+/* 
+ * -------------------------------------------------
+ * common
+ * -------------------------------------------------
+ *
+ */
+
+
+.section1,
+.section2,
+.section3,
+.section4,
+.section5,
+.section6 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tit,
+.titsub {
+    margin: 0 auto;
+}
+
+.section .tit {
+    width: 566px
+}
+
+.section1 .tit {
+    margin-top: 67px;
+}
+
+.section2 .tit {
+    margin-top: 54px;
+}
+
+.section3 .tit {
+    margin-top: 70px;
+}
+
+.section4 .tit {
+    margin-top: 100px;
+}
+
+.section5 .tit {
+    margin-top: 30px;
+}
+
+.section6 .tit {
+    margin-top: 6px;
+}
+
+.tit img {
+    width: 100%;
+}
+
+.section6 .titsub {
+    padding: 60px 0;
+}
+
+.titsub img {
+    width: 100%;
+}
+
+.sectionCon {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
