@@ -122,7 +122,7 @@ class validate {
      * @param {*} txt 
      */
     isMobile(txt) {
-        return /^1[3-9]\d{9}$/.test(txt);
+        return /^1\d{10}$/.test(txt);
     }
     /**
      * 电子邮箱

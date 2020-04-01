@@ -163,6 +163,7 @@ function getRedpackageAjax(datas, callbackFn) {
 }
 
 export default {
+    request,
     publicAjax,
     searchAjax,
     hasWechatcardAjax,

@@ -190,6 +190,19 @@ export const setMiniappShare = (event, options) => {
 }
 
 /**
+ * 蒙层提示
+ * @param {*} txt 
+ */
+export const popFn = (txt) => {
+    $(".showErr").html(txt);
+    $(".showErrBox").show();
+    setTimeout(function () {
+        $(".showErr").html("");
+        $(".showErrBox").hide();
+    }, 2000);
+}
+
+/**
  * 判断是否需要登陆
  * @param {*} event 
  * @param {*} callbackFn 

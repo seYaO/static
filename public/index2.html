@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!--删除默认的苹果工具栏和菜单栏-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--控制状态栏显示样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--格式检测-->
+    <meta content="telephone=no" name="format-detection" />
+    <!--控制页面打开大小-->
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    
+  </head>
+  <body>
+    <noscript>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <script type="text/javascript" src="//js.40017.cn/touch/cn/public/jquery-1.8.3.min.js"></script>
+    <!-- rem -->
+    <script type="text/javascript">
+        (function () {
+            var size = 750 // 设计稿宽度
+            $(document).on('page:resize', function (e) {
+                var _w = $(document.body).width();
+                $('html').css('font-size', ((_w > size) ? size : _w) / size * 100 + 'px');
+            });
+            $(document).trigger('page:resize');
+            $(window).on('resize', function () {
+                $(document).trigger('page:resize');
+            })
+        })();
+    </script>
+    <!--脚本-->
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script type="text/javascript" src="//js.40017.cn/cn/min/???/touch/hb/c/bridge.2.1.4.js?v=2016053"></script>
+    <script type="text/javascript" src="//js.40017.cn/cn/min/???/cn/s/api/resetrefid.4.0.js?v=2"></script>
+    <!-- <script type="text/javascript" src="//js.40017.cn/cn/min/??/cn/s/2016/touch/zt/c/sztcom.js?v=2016012703"></script> -->
+    <script type="text/javascript" src="https://js.40017.cn/cn/min/???/cn/s/api/setsharefn.5.1.js"></script>
+    <!-- 分享 -->
+    <!-- <script>
+        shareImg = window.__configs.shareInfo.shareImg;
+        shareTitle = window.__configs.shareInfo.shareTitle;
+        shareUrl = window.__configs.shareInfo.shareUrl;
+        shareDesc = window.__configs.shareInfo.shareDesc;
+        setShareFun.Pageview = "/Touch站专题/" + window.__configs.shareInfo.ztName;
+        setShareFun.changeShareInfo();
+    </script> -->
+    <!-- built files will be auto injected -->
+  </body>
+</html>

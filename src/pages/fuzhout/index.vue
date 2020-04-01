@@ -123,7 +123,7 @@
 import pageData from './js/data'
 import * as pageFn from './js/index'
 // import validate from '@/utils/validate'
-import config from './js/config'
+// import config from './js/config'
 import * as utils from '@/utils'
 // import services from '@/utils/services'
 
