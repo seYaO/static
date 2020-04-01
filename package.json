@@ -6,6 +6,8 @@
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "upload": "node upload.js",
+        "uploadpc": "node uploadpc.js",
+        "uploadimg": "node uploadimg.js",
         "deploy": "bash deploy.sh"
     },
     "dependencies": {

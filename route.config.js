@@ -1,4 +1,7 @@
+const pcconfigs = require('./pc.config')
 let configs = [{ name: 'index', }, { name: 'about', title: 'About Page', }]
+
+configs.concat(pcconfigs)
 
 // 福州惠民粉丝节 http://www.ly.com/scenery/zhuanti/fuzhout
 configs.push({
