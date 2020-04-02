@@ -51,12 +51,11 @@ export default {
 
     // 页面数据
     topImagUrl: config.topImagUrl, // 头图
-    redpackage: config.redpackage,
-    redlist: config.redlist, // 红包配置信息
+    sceneryInfo: null,
     sectionData1: [],
     sectionData2: [],
-    showFailure: false,
-    showSuccess: false,
-    dialogInfo: null,
-    selectIdx: 0,
+    sectionData3: [],
+    ids: [],
+    videoUrl: 'https://web.p.qq.com/qqmpmobile/coupon/shop-detail.html?type=3&shop_id=1&sp=3',
+    videoImg: '//pic5.40017.cn/03/000/3e/6c/rBANB1235IKAVc3EAALebsKLYpo089.jpg',
 }

@@ -3,6 +3,14 @@ let configs = [{ name: 'index', }, { name: 'about', title: 'About Page', }]
 
 configs = [...configs, ...pcconfigs]
 
+// 验客中国 https://www.ly.com/scenery/zhuanti/tiyanguanqdh?mdId=45619|45632|45633|45634
+configs.push({
+    name: 'tiyanguanqdh',
+    title: '验客中国',
+    entry: 'src/pages/tiyanguanqdh/index.js',
+    template: 'public/index2.html',
+})
+
 // 福州惠民粉丝节 http://www.ly.com/scenery/zhuanti/fuzhout
 configs.push({
     name: 'fuzhout',
@@ -17,8 +25,6 @@ configs.push({
     entry: 'src/pages/2020antiviral/index.js',
     template: 'public/index2.html',
 })
-
-// console.log(pcconfigs)
 
 
 

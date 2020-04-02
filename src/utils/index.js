@@ -40,6 +40,14 @@ export const getQueryString = (name) => {
 }
 
 /**
+ * XXX
+ * @param {*} url 
+ */
+export const toHttps = (url)=>{
+    return url.indexOf('tmp/') > -1 ? url : url.replace('http://', 'https://')
+}
+
+/**
  * 图片裁剪
  * @param {*} url 
  * @param {*} size 

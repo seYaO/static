@@ -1,0 +1,412 @@
+
+body {
+    background: #eef1f6;
+}
+
+.foot1 {
+    margin: 0;
+    padding: .2rem 0;
+    color: #333;
+    font-size: 0.24rem;
+    background: #fff;
+}
+
+.top,
+.title,
+.box_red {
+    position: relative;
+    width: 100%;
+}
+
+.title {
+    padding: .2rem .3rem .4rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.title .t {
+    position: relative;
+    padding: 0 .4rem 0 .22rem;
+    /* width: 2.2rem; */
+    color: #333;
+    font-size: .38rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.title .t::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: .1rem;
+    height: 100%;
+}
+
+.title .icon {
+    margin-right: .12rem;
+    width: .21rem;
+    height: .24rem;
+}
+
+.title .tx1 {
+    flex: auto;
+    font-size: .26rem;
+    line-height: 1;
+    color: #666;
+}
+
+.title .arrow {
+    width: .3rem;
+    height: .3rem;
+}
+
+.box_content {
+    position: relative;
+    padding-left: .3rem;
+    padding-right: .3rem;
+
+}
+
+.title,
+.subtit {
+    /* pointer-events: none; */
+}
+
+.top img,
+.top video,
+.box_red img,
+.title img,
+.subtit img {
+    display: block;
+    width: 100%;
+}
+
+.section {
+    margin-top: .2rem;
+    padding: .2rem 0 .4rem;
+    background-color: #fff;
+}
+
+/* 简介(45638) start */
+.section1 .title .t::before {
+    background-color: #38c879;
+}
+
+.section .title::before {
+    content: '';
+    width: .2rem;
+    height: .32rem;
+    -webkit-border-radius: .08rem .04rem .04rem .08rem;
+    border-radius: .08rem .04rem .04rem .08rem;
+    position: absolute;
+    left: 0;
+    top: .1rem;
+}
+
+.sectionCon1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.sectionCon1 img {
+    border-radius: .1rem;
+}
+
+.sectionCon1 .left {
+    width: 4.58rem;
+    height: 3.08rem;
+}
+
+.sectionCon1 .right {
+    height: 3.08rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sectionCon1 .right img {
+    width: 2.2rem;
+    height: 1.48rem;
+}
+
+.sectionCon2 {
+    margin-top: .2rem;
+    font-size: .28rem;
+    color: #999;
+}
+
+.sectionCon2 .bold {
+    color: #333;
+    ;
+}
+
+.sectionCon3 {
+    padding-top: .3rem;
+}
+
+.sectionCon3 .source {
+    overflow: auto;
+    flex-wrap: nowrap;
+    display: flex;
+}
+
+.sectionCon3 .sourceItem:first-child {
+    margin-left: .3rem;
+}
+
+.sectionCon3 .sourceItem {
+    margin-right: .2rem;
+    padding: .12rem .16rem;
+    width: 4rem;
+    border: 0;
+    border-radius: .1rem;
+    background-color: #f7f8f9;
+}
+
+.sectionCon3 .sourceItem .flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: center;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.sectionCon3 .sourceItem .tit{
+    position: relative;
+    line-height: 1.4;
+}
+
+.sectionCon3 .sourceItem .tit em{
+    margin-right: .1rem;
+    padding: 0 .05rem;
+    background: #38c879;
+    color: #fff;
+    font-size: .18rem;
+}
+
+.sectionCon3 .sourceItem .flex .r {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: center;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.sectionCon3 .sourceItem .price {
+    font-size: 0;
+    color: #ff6257;
+}
+
+.sectionCon3 .sourceItem .yuan {
+    font-size: .24rem;
+    color: #ff6257;
+}
+
+.sectionCon3 .sourceItem .money {
+    font-size: .36rem;
+    color: #ff6257;
+}
+
+.sectionCon3 .sourceItem .qi {
+    font-size: .24rem;
+    color: #b2b2b2;
+}
+
+.sectionCon3 .sourceItem .arrow {
+    display: inline-block;
+    margin-left: .1rem;
+    width: .27rem;
+    height: .13rem;
+    transform: rotate(-90deg);
+}
+
+/* 简介(45638) end */
+
+/* 验客体验官(45639) start */
+
+.section2 .title .t::before {
+    background-color: #ff7b72;
+}
+
+.sectionCon4 {
+    padding-top: .3rem;
+}
+
+.sectionCon4 .source {
+    overflow: auto;
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sectionCon4 .jdList .sourceItem:first-child {
+    margin-left: .3rem;
+}
+
+.sectionCon4 .jdList .sourceItem {
+    margin-right: .2rem;
+    margin-top: 0;
+    width: 2.68rem;
+    border: 0;
+}
+
+.sectionCon4 .jdList .sourceItem .left {
+    width: 2.68rem;
+    height: 1.9rem;
+    border-radius: .1rem;
+    overflow: hidden;
+}
+
+.sectionCon4 .jdList .sourceItem .right {
+    /* height: 2.86rem; */
+}
+
+.sectionCon4 .jdList .sourceItem .tit {
+    font-size: .3rem;
+    color: #333;
+}
+
+.sectionCon4 .jdList .sourceItem .subtit {
+    height: .56rem;
+    font-size: .26rem;
+    color: #666;
+}
+
+/* 验客体验官(45639) end */
+
+/* 精选游记(45640) start */
+.section3 .title .t::before {
+    background-color: #2aaaec;
+}
+
+.section3 .thList .sourceItem {
+    position: relative;
+    padding: 0;
+    height: 3.6rem;
+    border: 0;
+    border-radius: .1rem;
+    overflow: hidden;
+}
+
+.section3 .thList .sourceItem img {
+    width: 100%;
+    height: 100%;
+    border-radius: .1rem;
+}
+
+.section3 .thList .sourceItem .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.section3 .sourceItem .tit {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.section3 .sourceItem .tit span {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: .36rem;
+    line-height: 1.4;
+    color: #fff;
+}
+
+.section3 .sourceItem .tit span::before {
+    display: block;
+    content: '';
+    width: .87rem;
+    height: .03rem;
+    background: url(//img1.40017.cn/cn/s/2020/zt/touch/200311/03.png) center/100% no-repeat;
+    margin-right: .1rem;
+}
+
+.section3 .sourceItem .tit span::after {
+    display: block;
+    content: '';
+    width: .87rem;
+    height: .03rem;
+    background: url(//img1.40017.cn/cn/s/2020/zt/touch/200311/04.png) center/100% no-repeat;
+    margin-left: .1rem;
+}
+
+.section3 .sourceItem .nice {
+    position: absolute;
+    left: 0;
+    bottom: .3rem;
+    width: 100%;
+    text-align: center;
+    font-size: .26rem;
+    color: #fff;
+}
+
+/* 精选游记(45640) end */
