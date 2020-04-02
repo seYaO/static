@@ -4,7 +4,7 @@ const { bucketName, projectName } = require('./upload.config')
 const configs = require('./route.config')
 
 let isProd = process.env.NODE_ENV === 'production', htmls = {}
-
+console.log(configs)
 configs.map(item => {
     htmls[item.name] = {
         entry: item.entry ? item.entry : `./src/pages/${item.name}/index.js`,
