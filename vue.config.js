@@ -17,7 +17,7 @@ configs.map(item => {
         title: item.title ? item.title : 'Index Page',
         chunksSortMode: 'manual',
         minify: false,
-        chunks: ['chunk-vendors', 'chunk-common', `${item.name}`]
+        chunks: [`${item.name}`]
     }
 })
 

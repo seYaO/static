@@ -1,15 +1,9 @@
 <template>
-    <div id="app">
-        <a href="about.html">About</a>
-        <h1>Index</h1>
-    </div>
+    <div class="app"></div>
 </template>
 
 <script>
-export default {
-    name: 'page1'
-}
+export default {}
 </script>
 
-<style>
-</style>
+<style></style>
