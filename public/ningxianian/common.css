@@ -40,7 +40,7 @@ i {
     overflow: hidden;
     font: 14px '微软雅黑', 'microsoft yahei ui', sans-serif;
     position: relative;
-    background: #eb2d33;
+    background: #fff;
 }
 
 .clearfix:before,
@@ -223,5 +223,5 @@ i {
 .sectionCon {
     width: 1000px;
     margin: 0 auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }

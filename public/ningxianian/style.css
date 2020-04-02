@@ -10,10 +10,10 @@
 }
 
 .section1Con .left {
-    padding-bottom: 15px;
     position: relative;
     float: left;
     width: 378px;
+    height: 358px;
     border: 1px solid #fda355;
     background-color: rgba(255, 255, 255, .5);
 }
@@ -57,6 +57,7 @@
     float: right;
     width: 610px;
     height: 358px;
+    background-color: #000;
 }
 
 .section1Con .right video {
@@ -155,41 +156,65 @@
 /* end end end end end */
 
 /* 畅游江阴 start */
+.section3Con {
+    padding-top: 45px;
+}
+
+.section3Con .tabs {
+    text-align: center;
+}
+
+.section3Con .tabs .tab {
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 198px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    background: #fd913e;
+    border-radius: 44px;
+    border: 1px solid #fd913e;
+    box-shadow: 0 8px 10px -5px rgba(49, 69, 89, 0.1);
+    box-sizing: border-box;
+}
+
+.section3Con .tabs .tab:hover,
+.section3Con .tabs .active {
+    color: #fd913e;
+    background: #fff;
+}
 
 .section3Con .sourceCon {
-    margin-left: 102px;
-    padding-bottom: 30px;
+    margin-top: 34px;
 }
 
 .section3Con .detail {
     float: left;
-    margin-right: 12px;
-    margin-bottom: 1px;
-    padding: 12px 11px 22px;
-    width: 490px;
-    height: 464px;
-    background: url('//img1.40017.cn/cn/s/2019/zt/pc/200102/border1.png') no-repeat;
+    margin-right: 18px;
+    margin-bottom: 18px;
+    width: 320px;
+    height: 342px;
     box-sizing: border-box;
+}
+
+.section3Con .detail:nth-child(3n) {
+    margin-right: 0;
 }
 
 .section3Con .source {
     position: relative;
-    height: 430px;
+    height: 342px;
     background: #fff;
 }
 
-.section3Con .source .angle {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 98px;
-    height: 65px;
-    background: url('//img1.40017.cn/cn/s/2019/zt/pc/200102/angle.png') no-repeat;
-}
-
 .section3Con .source .img {
-    width: 470px;
-    height: 220px;
+    width: 320px;
+    height: 190px;
 }
 
 .section3Con .source .img img {
@@ -198,24 +223,14 @@
 }
 
 .section3Con .source .title {
-    padding: 10px 18px 0;
-    font-size: 24px;
+    padding: 5px 14px 0;
+    font-size: 18px;
     color: #333;
     overflow: hidden;
 }
 
-.section3Con .source .subtit {
-    padding: 2px 18px 0;
-    padding-left: 18px;
-    padding-right: 18px;
-    height: 50px;
-    font-size: 18px;
-    color: #666;
-    overflow: hidden;
-}
-
 .section3Con .source .bottom {
-    padding: 20px 18px 0;
+    padding: 14px 14px 0;
     text-align: center;
 }
 
@@ -226,7 +241,7 @@
 }
 
 .section3Con .source .left span {
-    color: #ff480f;
+    color: #fd913e;
     font-weight: bold;
 }
 
@@ -240,35 +255,18 @@
 
 .section3Con .source .btn {
     display: inline-block;
-    width: 248px;
-    height: 58px;
-    line-height: 47px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
-    font-size: 24px;
-    color: #141005;
-    background: url('//img1.40017.cn/cn/s/2019/zt/pc/200102/btn_3.png') no-repeat;
-    background-size: 100% 100%;
+    font-size: 16px;
+    color: #fff;
+    background-color: #fd913e;
+    border-radius: 5px;
 }
 
 .section3Con .source .btn:hover {
-    background: url('//img1.40017.cn/cn/s/2019/zt/pc/200102/btn_3_hover.png') no-repeat;
-    background-size: 100% 100%;
-}
-
-.section3Con .more {
-    padding-top: 30px;
-    text-align: center;
-}
-
-.section3Con .link {
-    display: inline-block;
-    width: 597px;
-    height: 82px;
-    background: url('//img1.40017.cn/cn/s/2019/zt/pc/200102/btn_more.png') no-repeat;
-}
-
-.section3Con .link:hover {
-    background: url('//img1.40017.cn/cn/s/2019/zt/pc/200102/btn_more_hover.png') no-repeat;
+    background-color: #c96f29;
 }
 
 /* end end end end end */
@@ -296,24 +294,49 @@
     position: relative;
     width: 478px;
     height: 336px;
+    overflow: hidden;
 }
 
 .section4Con .source .img img {
     width: 100%;
     height: 100%;
 }
-.section4Con .source .img .smask{
-    display: none;
-}
 
 .section4Con .source .img .smask {
-    display: block;
     position: absolute;
-    bottom: 0;
     left: 0;
+    top: 100%;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
     width: 100%;
     height: 100%;
+    text-align: center;
     background: rgba(0, 0, 0, .5);
+}
+
+.section4Con .source:hover .img .smask {
+    top: 0;
+}
+
+.section4Con .source .img .txt {
+    margin: 40px;
+    color: #fff;
+    text-align: left;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+.section4Con .source .img .btn {
+    display: inline-block;
+    width: 180px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 24px;
+    color: #fd913e;
+    background-color: #fff;
+    border-radius: 38px;
 }
 
 .section4Con .source .title {
@@ -347,7 +370,97 @@
 /* end end end end end */
 
 /* 好物江阴 */
-.section5Con {}
+.section5Con {
+    padding-top: 38px;
+}
+
+.section5Con .tabs {
+    text-align: center;
+}
+
+.section5Con .tabs .tab {
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 198px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    background: #fd913e;
+    border-radius: 44px;
+    border: 1px solid #fd913e;
+    box-shadow: 0 8px 10px -5px rgba(49, 69, 89, 0.1);
+    box-sizing: border-box;
+}
+
+.section5Con .tabs .tab:hover,
+.section5Con .tabs .active {
+    color: #fd913e;
+    background: #fff;
+}
+
+.section5Con .sourceCon {
+    margin-top: 38px;
+    position: relative;
+}
+
+.section5Con .swiper-intro {
+    padding-bottom: 22px;
+}
+
+.section5Con .swiper-intro .img {
+    float: left;
+    width: 648px;
+    height: 338px;
+}
+
+.section5Con .swiper-intro .info {
+    float: right;
+    width: 324px;
+}
+
+.section5Con .swiper-intro .tx1 {
+    padding-top: 40px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.section5Con .swiper-intro .tx2 {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.section5Con .swiper-container {
+    height: 117px;
+}
+
+.section5Con .swiper-slide {
+    background-color: #e7e0ed;
+}
+
+.section5Con .button-prev,
+.section5Con .button-next {
+    position: absolute;
+    bottom: 34px;
+    width: 47px;
+    height: 47px;
+}
+
+.section5Con .button-prev {
+    left: -60px;
+    background: url('http://img1.40017.cn/cn/s/2020/zt/pc/20200402/button-prev.png');
+}
+
+.section5Con .button-next {
+    right: -60px;
+    background: url('http://img1.40017.cn/cn/s/2020/zt/pc/20200402/button-next.png');
+}
+
 
 /* end end end end end */
 

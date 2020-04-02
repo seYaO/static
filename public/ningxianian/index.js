@@ -14,18 +14,44 @@ var resourceSome = {
     },
     // 初始化轮播
     initSwiper: function () {
+        // 邂逅江阴 Swiper
         new Swiper('.slider2', {
             autoplay: false,//可选选项，自动滑动
-            effect : 'fade',
+            effect: 'fade',
             pagination: {
                 el: '.swiper-pagination',
-                bulletElement : 'li',
-                clickable :true,
+                bulletElement: 'li',
+                clickable: true,
             },
+        })
+        // 好物江阴
+        var mySwiper = new Swiper('.slider5-0', {
+            slidesPerView: 6,
+            spaceBetween: 10,
+        })
+        $('.source0 .button-prev').click(function () {
+            mySwiper.slidePrev();
+        })
+        $('.source0 .button-next').click(function () {
+            mySwiper.slideNext();
         })
     },
     mainClick: function () {
         var that = this;
+        // 畅游江阴tab
+        $('.section3Con .tabs').on('click', '.tab', function () {
+            var index = $(this).index();
+            $(this).addClass('active').siblings().removeClass("active");
+            $('.section3Con .sourceCon .sourceBlock').addClass('none');
+            $('.section3Con .sourceCon .sourceBlock').eq(index).removeClass('none');
+        });
+        // 好物江阴tab
+        $('.section5Con .tabs').on('click', '.tab', function () {
+            var index = $(this).index();
+            $(this).addClass('active').siblings().removeClass("active");
+            $('.section5Con .sourceCon .sourceBlock').addClass('none');
+            $('.section5Con .sourceCon .sourceBlock').eq(index).removeClass('none');
+        });
     },
     init: function () {
         this.initSwiper();
