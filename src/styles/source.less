@@ -1,0 +1,325 @@
+/*
+                                                            
+                                                            
+  _______   ______   __    __   ______    _______   ______  
+ /       \ /      \ |  \  |  \ /      \  /       \ /      \ 
+|  $$$$$$$|  $$$$$$\| $$  | $$|  $$$$$$\|  $$$$$$$|  $$$$$$\
+ \$$    \ | $$  | $$| $$  | $$| $$   \$$| $$      | $$    $$
+ _\$$$$$$\| $$__/ $$| $$__/ $$| $$      | $$_____ | $$$$$$$$
+|       $$ \$$    $$ \$$    $$| $$       \$$     \ \$$     \
+ \$$$$$$$   \$$$$$$   \$$$$$$  \$$        \$$$$$$$  \$$$$$$$
+                                                            
+                                                            
+                                                            
+*/
+
+/* 
+ * -------------------------------------------------
+ * source 数据
+ * -------------------------------------------------
+ *
+ */
+/* 价格 */
+.priceInfo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.priceInfo .sale {
+    padding: 0.02rem 0.1rem;
+    font-size: 0.2rem;
+    color: #fff;
+    background: #ff480f;
+    border-radius: .05rem;
+    margin-bottom: .1rem;
+}
+
+.priceInfo .price {
+    font-size: 0;
+}
+
+.priceInfo .yuan {
+    font-size: .24rem;
+    color: #009fe7;
+}
+
+.priceInfo .money {
+    font-size: .4rem;
+    font-weight: 600;
+    line-height: .5rem;
+    height: .5rem;
+    color: #009fe7;
+}
+
+.priceInfo .qi {
+    font-size: .24rem;
+    color: #666;
+}
+
+.priceInfo .btn {
+    width: 1.5rem;
+    height: .5rem;
+    line-height: .5rem;
+    font-size: .24rem;
+    text-align: center;
+    color: #fff;
+    background: #009fe7;
+    border-radius: .6rem;
+    box-shadow: 0 .1rem .1rem -.05rem rgba(49, 69, 89, 0.2);
+}
+
+.priceInfo .btn.disable {
+    background: #898989;
+}
+
+/* 数据 */
+.source .sourceItem {
+    background: #fff;
+    overflow: hidden;
+}
+
+.source .left img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.source .sourceItem .tit {
+    color: #333;
+    font-size: .24rem;
+    line-height: .32rem;
+    /* height: .32rem; */
+    margin-bottom: .05rem;
+}
+
+.source .sourceItem .subtit {
+    color: #666;
+    font-size: .22rem;
+    margin-bottom: .06rem;
+    line-height: .3rem;
+    height: .6rem;
+}
+
+.source .sourceItem .tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.05rem 0.1rem;
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 0.24rem;
+    color: #fff;
+}
+
+.source .sourceItem .reduce>span .red {
+    color: #f21e2d;
+}
+
+.source .sourceItem .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: .2rem;
+    padding-right: .1rem;
+    height: .33rem;
+    line-height: .33rem;
+    text-align: center;
+    font-size: .2rem;
+    color: #fff;
+    background: rgba(0, 0, 0, .8);
+    box-sizing: border-box;
+}
+
+.source .sourceItem .label::after {
+    content: '';
+    position: absolute;
+    right: -.36rem;
+    top: 0;
+    width: .36rem;
+    height: .33rem;
+    background: url(https://img1.40017.cn/cn/s/2019/zt/touch/191101/label_r.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.source .sourceItem .buttons {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.source .sourceItem .btn {
+    height: .55rem;
+    line-height: .55rem;
+    font-size: .3rem;
+    text-align: center;
+    color: #fff;
+    background: #009fe7;
+    border-radius: .55rem;
+}
+
+/* 左右结构 */
+.thList {
+    overflow: hidden;
+}
+
+.thList .sourceItem {
+    padding: .2rem .12rem;
+    margin-bottom: .24rem;
+    border: 1px solid #009fe7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.thList .sourceItem:last-child {
+    margin-bottom: 0;
+}
+
+.thList .smask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, .3), rgba(0, 0, 0, 0));
+}
+
+.thList .city {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.thList .city .value {
+    font-size: .2rem;
+    color: #fff;
+    height: .5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.thList .city img {
+    width: .2rem;
+    height: .22rem;
+    margin: 0 .04rem;
+}
+
+.thList .button {
+    margin-top: .15rem;
+    width: 1.68rem;
+    height: .5rem;
+    line-height: .5rem;
+    text-align: center;
+    color: #009fe7;
+    font-size: .24rem;
+    border: 1px solid #009fe7;
+    border-radius: .1rem;
+}
+
+.thList .sourceItem .left {
+    position: relative;
+    overflow: hidden;
+    width: 2.23rem;
+    height: 2.34rem;
+}
+
+.thList .sourceItem .right {
+    position: relative;
+    margin-right: .22rem;
+    width: 3.1rem;
+}
+
+.thList .sourceItem .subtit {
+    line-height: .32rem;
+    height: 1.2rem;
+}
+
+/* 上下结构 */
+
+.jdList {
+    overflow: hidden;
+}
+
+.jdList.source {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.jdList .sourceItem {
+    position: relative;
+    margin-top: .12rem;
+    /* width: 2.9rem; */
+    background: #fff;
+    /* border: 1px solid #009fe7; */
+    overflow: hidden;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+}
+
+.jdList .sourceItem:first-child {
+    margin-top: 0;
+}
+
+.jdList .sourceItem:nth-child(2) {
+    margin-top: 0;
+}
+
+.jdList .sourceItem .left {
+    position: relative;
+    overflow: hidden;
+    /* width: 2.9rem; */
+    /* height: 1.68rem; */
+}
+
+.jdList .sourceItem .right {
+    padding: .15rem .14rem
+}
+
+.jdList .sourceItem .tit {
+    /* font-size: .24rem; */
+    /* line-height: .3rem; */
+}
+
+.jdList .sourceItem .subtit {
+    font-size: .24rem;
+    line-height: .3rem;
+    height: .6rem;
+}

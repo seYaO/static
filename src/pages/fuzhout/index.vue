@@ -50,7 +50,6 @@
                         </div>
                         <div class="right">
                             <h2 class="tit multi-ellipsis--l2">{{item.SceneryName}}</h2>
-                            <!-- <h2 class="tit multi-ellipsis--l2">{{item.BCTTicketName}}</h2> -->
                             <div class="priceInfo">
                                 <div class="price">
                                     <i class="yuan">￥</i>
@@ -116,16 +115,16 @@
 
 <style lang="less">
 @import '../../styles/common.less';
+@import '../../styles/dialog.less';
+@import '../../styles/card.less';
+@import '../../styles/source.less';
 @import './styles/index.less';
 </style>
 
 <script>
 import pageData from './js/data'
 import * as pageFn from './js/index'
-// import validate from '@/utils/validate'
-// import config from './js/config'
 import * as utils from '@/utils'
-// import services from '@/utils/services'
 
 let AppInfo = {
     isAPP: null, // 是否客户端打开
@@ -145,8 +144,6 @@ export default {
     },
     mounted() {
         //  
-        
-        // console.log(validate.isempty(this))
     },
     updated() {
         // this.getScrollOffset();
@@ -167,7 +164,6 @@ export default {
             var that = this
             var AppNewSpm = utils.getQueryString('tcwebtag')
             utils.TongChengInfo(function (data) {
-                // console.log(1)
                 AppInfo.isAPP = data.isTc
                 AppInfo.cityID = data.cid
                 if (AppInfo.isAPP) {
@@ -185,7 +181,6 @@ export default {
                         that.memberId = uId ? uId : ''
                     }
                 }
-                // allInit.init(that.zId);
                 pageFn.allInit(that,{id: that.zId, AppInfo, AppNewSpm})
 
                 // 页面进来，先判断是否登陆，如果登陆了，看之前有没有领取过红包
