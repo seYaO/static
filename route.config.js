@@ -3,6 +3,14 @@ let configs = [{ name: 'index', }, { name: 'about', title: 'About Page', }]
 
 configs = [...configs, ...pcconfigs]
 
+// 全域宁夏 https://www.ly.com/scenery/zhuanti/yxningxia
+configs.push({
+    name: 'yxningxia',
+    title: '全域宁夏',
+    entry: 'src/pages/yxningxia/index.js',
+    template: 'public/index.html',
+})
+
 // 验客中国 https://www.ly.com/scenery/zhuanti/tiyanguanqdh?mdId=45619|45632|45633|45634
 configs.push({
     name: 'tiyanguanqdh',

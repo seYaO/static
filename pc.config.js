@@ -9,13 +9,13 @@ configs.push({
     template: 'public/pc/abzbpc/index.html',
 })
 
-// 欢乐宁夏年_宁夏过年特惠_同程旅游 https://www.ly.com/scenery/zhuanti/ningxianian
+// 江阴文旅旗舰店_江阴旅游攻略_同程旅游 https://www.ly.com/scenery/zhuanti/jiangyin
 configs.push({
-    name: 'ningxianian',
+    name: 'jiangyin',
     version: '20200402',
-    title: '欢乐宁夏年_宁夏过年特惠_同程旅游',
+    title: '江阴文旅旗舰店_江阴旅游攻略_同程旅游',
     entry: 'src/pages/index/index.js',
-    template: 'public/pc/ningxianian/index.html',
+    template: 'public/pc/jiangyin/index.html',
 })
 
 

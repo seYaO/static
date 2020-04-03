@@ -56,7 +56,8 @@ var resourceSome = {
     init: function () {
         this.initSwiper();
         this.mainClick();
-        this.mapFn("38.492243", "106.240311");
+        // 120.296744,31.926044
+        this.mapFn("31.926044", "120.296744");
     },
 };
 

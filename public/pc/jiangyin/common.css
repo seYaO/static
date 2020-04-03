@@ -30,6 +30,30 @@ a {
     cursor: pointer;
 }
 
+a:link {
+    text-decoration: none
+}
+
+a:visited {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: none
+}
+
+a:active {
+    text-decoration: none
+}
+
+video:focus {
+    outline: 0
+}
+
+video:focus {
+    outline: none
+}
+
 em,
 i {
     font-style: normal;
